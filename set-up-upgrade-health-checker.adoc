@@ -1,0 +1,152 @@
+---
+sidebar: sidebar 
+permalink: set-up-upgrade-health-checker.html 
+keywords: upgrade, health, checker, set up, download 
+summary: Puedes descargar Upgrade Health Checker para generar informes completos in situ antes de actualizar a una versión más reciente de ONTAP. 
+---
+= Descarga y configura Upgrade Health Checker
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Puedes descargar Upgrade Health Checker para generar informes completos in situ antes de actualizar a una versión más reciente de ONTAP.
+
+.Antes de empezar
+Configura una máquina virtual para Upgrade Health Checker con las siguientes especificaciones:
+
+* Procesamiento y memoria: m5.large VM o equivalente con 2 vCPUs y 8 GiB RAM.
+* Sistema operativo recomendado: Ubuntu 22.04 para compatibilidad óptima.
+* Almacenamiento: proporciona un volumen raíz con un mínimo de 100 GB y un volumen NFS adicional de al menos 100 GB para asegurar la preservación de los datos si la máquina virtual se ve comprometida.
+* Requisitos de alojamiento: coloca la máquina virtual en una ubicación con conectividad de clúster y acceso a internet para permitir las actualizaciones automáticas de la herramienta. La máquina debe tener acceso a los siguientes endpoints a través de HTTPS para realizar actualizaciones automáticas:
++
+** https://api.uhc.netapp.com[]
+** https://gql.aiq.netapp.com[]
++
+Si no tienes acceso a Internet, consulta a NetApp para obtener orientación.
+
+
+
+* Paquetes recomendados: instala un servidor web para facilitar el acceso.
+
+
+Además, asegúrate de que la máquina virtual puede conectarse al endpoint de telemetría (https://support.netapp.com/[]) a través de HTTPS para que NetApp reciba información de AutoSupport sobre tus planes de actualización.
+
+.Pasos
+. Descarga el binario Upgrade Health Checker haciendo link:https://console.netapp.com/automationHub["navegando hasta el NetApp Console Automation Hub"] y buscando el mosaico Upgrade Health Checker.
+. Configura la máquina virtual Upgrade Health Checker y usa SSH para colocar el binario en la ubicación que prefieras.
+. Verifica la firma digital de Upgrade Health Checker.
++
+Upgrade Health Checker tiene un certificado público de firma de código (`UHC-Linux-codesigning-certificate-public.pem`) y una cadena de certificados intermedios y raíz (`UHC-Linux-chain-certificates-public.pem`).
+
++
+.. (Opcional) Verifica el certificado de firma de código con la cadena:
++
+[listing]
+----
+openssl verify -CAfile UHC-Linux-chain-certificates-public.pem UHC-Linux-codesigning-certificate-public.pem
+----
++
+Una salida de `OK` confirma una cadena de confianza válida.
+
+.. Extrae la clave pública del certificado de firma de código:
++
+[listing]
+----
+openssl x509 -in UHC-Linux-codesigning-certificate-public.pem -pubkey -noout -out UHC-Linux-public.pub
+----
+.. Verifica el archivo de firma (`uhc.sig`) contra el binario de Upgrade Health Checker usando la clave pública:
++
+[listing]
+----
+openssl dgst -sha256 -verify UHC-Linux-public.pub -signature uhc.sig uhc
+----
++
+Una salida de `Verified OK` confirma que la firma es válida.
+
+
+
+. Configura una cuenta de servicio y un rol para el acceso al clúster ONTAP. Para el acceso al clúster a través de Upgrade Health Checker, crea el rol de servicio como un rol REST.
++
+
+NOTE: Puedes crear un playbook de Ansible para automatizar el despliegue del rol y el usuario en todos los clusters ONTAP.
+
++
+Debes crear la cuenta de servicio para la aplicación http. Usa los siguientes comandos de la CLI para configurar los permisos necesarios:
+
++
+[source, cli]
+----
+security login rest-role create -role uhctool -api /api -access readonly -vserver
+
+security login rest-role create -role uhctool -api /api/support/autosupport -access read_create_modify -vserver
+
+security login rest-role create -role uhctool -api /api/support/autosupport/messages -access read_create_modify -vserver
+
+vserver services web access create -name spi -role uhctool -vserver
+
+security login create -user-or-group-name uhctool -role uhctool -application http -authentication-method password
+
+security login create -user-or-group-name uhctool -role uhctool -application ssh -authentication-method password
+----
+. Configura la gestión de credenciales para asegurar el acceso a la aplicación.
++
+Por ejemplo, si tienes CyberArk y Conjur, puedes configurar tu entorno para evitar pasar credenciales a través de un archivo yaml o línea de comandos.
+
++
+.. Crea las cajas fuertes necesarias de CyberArk:
++
+... Crea una Safe (Main-Conjur-Safe) que contenga las credenciales y secretos de la aplicación
+... Crea una caja fuerte (API-Credentials-Safe) que contenga el Conjur Host ID y la API Key
+... Crea un Safe (Conjur-SSL-Certificate) que tenga el certificado necesario
+
+
+.. Crea los archivos de configuración (Conjur.conf) y de identidad (Conjur.identity) para esta aplicación:
++
+... Conjur.conf
++
+[listing]
+----
+account:
+plugins:[]
+appliance_url: https://FQDN
+cert_file: /etc/conjur.pem
+----
+... Conjur.identity
++
+[listing]
+----
+machine https://FQDN/authn
+login host /prodvault/devops/<Main-Conjur-Safe>/host1
+password XXXXXX
+----
+
+
+
+
++
+Aquí tienes un ejemplo de cómo usar CyberArk y Conjur en un playbook de Ansible:
+
++
+.. Instala Conjur Ansible Collection, que incluye el plugin Conjur Ansible Lookup, en Ansible Host:
++
+[listing]
+----
+ansible-galaxy collection install cyberark.conjur
+----
+.. Crea una tarea en un archivo yaml para obtener el nombre de usuario y la contraseña de CyberArk:
++
+[listing]
+----
+conjur_username: "{{ lookup('cyberark.conjur.conjur_variable', 'prodvault/devops/<Main-Conjur-Safe>/<Account name>/username', validate_certs=false) }}"
+conjur_password: "{{ lookup('cyberark.conjur.conjur_variable', 'prodvault/devops/<Main-Conjur-Safe>/<Account name>/password', validate_certs=false) }}"
+----
+
+
+
+
+.¿Qué sigue?
+Puedes usar Upgrade Health Checker para ayudarte a planear una actualización de ONTAP mediante link:generate-report-upgrade-health-checker.html["generar un informe de actualización"].

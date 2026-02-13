@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: faq-upgrade-health-checker.html 
+keywords: upgrade, health, checker, faq, frequently asked questions, frequently asked questions about upgrade health checker 
+summary: 'Preguntas frecuentes (FAQ) para Upgrade Health Checker.' 
+---
+= FAQ para Upgrade Health Checker
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Preguntas frecuentes (FAQ) para Upgrade Health Checker.
+
+
+
+== ¿En qué se diferencia Upgrade Health Checker de Upgrade Advisor?
+
+Upgrade Health Checker es una herramienta in situ adecuada para usuarios con entornos grandes o complejos, acceso limitado a internet o marcos de automatización y orquestación existentes. Upgrade Advisor es adecuado para usuarios con un entorno más pequeño que prefieren una experiencia basada en cloud y centrada en la interfaz de usuario.
+
+Puedes aprender más sobre link:learn-about-upgrade-health-checker.html["Comprobador de estado de actualizaciones"] y link:https://docs.netapp.com/us-en/active-iq/upgrade_advisor_overview.html["Upgrade Advisor"^] para determinar qué herramienta se adapta mejor a tus necesidades.
+
+
+
+== ¿Qué información incluye un informe de Upgrade Health Checker?
+
+Los informes de Upgrade Health Checker proporcionan información detallada sobre posibles bloqueos y advertencias que debes solucionar antes de actualizar tus clusters de ONTAP, los riesgos asociados con tus clusters y la información sobre las nuevas funciones y mejoras en la versión de ONTAP a la que estás actualizando.
+
+
+
+== ¿Se puede usar Upgrade Health Checker sin conexión a internet?
+
+No necesitas conexión a internet para ejecutar Upgrade Health Checker. Genera planes de actualización e informes en el sitio usando los datos de configuración actuales de tu clúster ONTAP.
+
+Sin embargo, se requiere acceso a internet para las actualizaciones automáticas de la herramienta. Si tu entorno no tiene conectividad a internet, contacta a NetApp para que te orienten sobre cómo asegurarte de que tu herramienta Upgrade Health Checker siga estando actualizada.
+
+
+
+== ¿Qué versiones de ONTAP admite Upgrade Health Checker?
+
+Upgrade Health Checker admite actualizaciones a ONTAP 9.11.1 y versiones posteriores.

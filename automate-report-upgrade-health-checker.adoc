@@ -1,0 +1,67 @@
+---
+sidebar: sidebar 
+permalink: automate-report-upgrade-health-checker.html 
+keywords: upgrade, health, checker 
+summary: Puedes automatizar la generación de informes de Upgrade Health Checker para reducir tu esfuerzo manual al planificar las actualizaciones de ONTAP en entornos grandes y complejos. 
+---
+= Automatiza la generación de planes de actualización con Upgrade Health Checker
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Puedes automatizar la generación de informes de Upgrade Health Checker para reducir tu esfuerzo manual al planificar las actualizaciones de ONTAP en entornos grandes y complejos.
+
+.Pasos
+. Para garantizar la creación correcta de tus informes de actualización, completa todos los pasos de configuración necesarios y las tareas puntuales descritas en link:generate-upgrade-health-checker-report.html["Genera un informe de actualización de ONTAP"].
+. Crea un script para ejecutar Upgrade Health Checker con los parámetros adecuados para tu entorno.
++
+[source, cli]
+----
+./uhc \
+  --cluster-ip=<cluster-ip> \
+  --cluster-username=<cluster-username> \
+  --cluster-password=<cluster-password> \
+  --target-ontap-version=<target-ontap-version> \
+  --accept-eula=true
+----
++
+Aquí tienes un ejemplo de un cronjob que ejecuta la herramienta de lunes a viernes a las 4AM. Los archivos binario y config.yaml se han instalado en /opt/uhc/tool/.
+
++
+Script de Bash:
+
++
+[listing]
+----
+#!/bin/bash
+cd /opt/uhc/tool
+/opt/uhc/tool/uhc --accept-eula true --cluster-ip cluster-mgmt1.example.com --target-ontap-version current --cluster-username uhctool --cluster-password passw0rd
+/opt/uhc/tool/uhc --accept-eula true --cluster-ip cluster-mgmt2.example.com --target-ontap-version 9.14.1 --cluster-username uhctool --cluster-password passw0rd
+----
++
+Tarea cron:
+
++
+[listing]
+----
+0 4 * * 1-5 /usr/local/bin/uhccron.sh
+----
+. Después de que Upgrade Health Checker termine sus comprobaciones, ve a la carpeta  `runs` para ver el plan de actualización y el informe del clúster.
++
+
+NOTE: Cada ejecución del programa es una ejecución única y tendrá todos los datos, registros y resultados asociados en la carpeta asociada `runs`.
+
+. Abre el archivo de informe (llamado `uhc_<cluster-name>_<YYYYMMDDHHMMSS>.html`) en un navegador web para ver el informe. Si estás ejecutando Upgrade Health Checker en un host remoto, primero descarga el archivo de informe en una máquina donde puedas verlo en un navegador web.
++
+La ruta del registro y la ruta del informe son las siguientes:
+
++
+** Ruta de registro: `<output-path>/<unique-run-dir>/<cluster-name>/logs`
+** Ruta del informe: `<output-path>/<unique-run-dir>/<cluster-name>/results/uhc_<cluster-name>_<YYYYMMDDHHMMSS>.html`
+
+
+
