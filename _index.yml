@@ -25,5 +25,3 @@ indexpage:
       url: upgrade-health-checker-input-parameters.html
     - title: FAQ para Upgrade Health Checker
       url: faq.html
-    - title: Documentación de Upgrade Advisor
-      url: https://docs.netapp.com/us-en/active-iq/upgrade_advisor_overview.html

@@ -217,7 +217,6 @@
   <block id="a8324b80938b67ec782deb0221494038" category="doc">Novedades en Upgrade Health Checker</block>
   <block id="984ed907e956f5ada3f813bd4a802fd2" category="inline-link-macro">Hub de Automatización de NetApp Console</block>
   <block id="28418efc88b69f5e65f0a85f816e9eea" category="paragraph">Conoce las novedades de Upgrade Health Checker. Puedes encontrar información adicional sobre mejoras navegando al mosaico Upgrade Health Checker en el <block ref="40053797cfb8864b5eaa5f1f6f7991c2" category="inline-link-macro-rx"></block> y viendo los archivos de descarga más recientes de Upgrade Health Checker.</block>
-  <block id="70d92c1e2419b7500249e84f56bfda5d" category="section-title">12 febrero 2026</block>
   <block id="ae47874d4e80f14ff840114a5af1558e" category="paragraph">Upgrade Health Checker ofrece una nueva solución para generar informes completos in situ que te permiten completar una actualización de ONTAP con éxito. Se puede usar con los marcos de automatización y orquestación existentes para mejorar la eficiencia al actualizar uno o varios clústeres. Upgrade Health Checker admite actualizaciones a ONTAP 9.11.1 y versiones posteriores.</block>
   <block id="ba6d627457ce6f12fac3776c3f84b9f5" category="inline-link-macro">Conoce más sobre Upgrade Health Checker</block>
   <block id="c2da3472d13132f746797e82ab607214" category="paragraph"><block ref="311172ef496e6974c00a808505e30585" category="inline-link-macro-rx"></block>.</block>
@@ -228,9 +227,9 @@
   <block id="e28bd5f4fde7913aca83e892e7ffda0a" category="sidebar">Usa Upgrade Health Checker</block>
   <block id="514c14b02caf403ad003cd6f6072c8d1" category="sidebar">Automatiza la generación de informes</block>
   <block id="dfcc398099d6a64026e51ab282e16253" category="sidebar">Más recursos</block>
-  <block id="a3c4408acdfc01e2ed1bf7df24ffcfbd" category="sidebar">Documentación de Upgrade Advisor</block>
   <block id="7d0ee6fed10d3d4e5c9ee496729ab519" category="sidebar">Notas de publicación</block>
   <block id="33871b6190a8d5adbe8b15282054766c" category="sidebar">Novedades</block>
   <block id="6ba8c57dc65e01916d692a44ff09f37a" category="sidebar">Parámetros de entrada para Upgrade Health Checker</block>
   <block id="1fe917b01f9a3f87fa2d7d3b7643fac1" category="sidebar">Preguntas frecuentes</block>
+  <block id="d8f8bff1a4b83b3c4aa6b4284a2e39c2" category="section-title">13 febrero 2026</block>
 </blocks>
