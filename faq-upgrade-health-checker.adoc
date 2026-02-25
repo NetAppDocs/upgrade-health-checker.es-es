@@ -35,7 +35,7 @@ Los informes de Upgrade Health Checker proporcionan información detallada sobre
 
 No necesitas conexión a internet para ejecutar Upgrade Health Checker. Genera planes de actualización e informes en el sitio usando los datos de configuración actuales de tu clúster ONTAP.
 
-Sin embargo, se requiere acceso a internet para las actualizaciones automáticas de la herramienta. Si tu entorno no tiene conectividad a internet, contacta a NetApp para que te orienten sobre cómo asegurarte de que tu herramienta Upgrade Health Checker siga estando actualizada.
+Sin embargo, se requiere acceso a internet para las actualizaciones automáticas de la herramienta. Si tu entorno no tiene conectividad a internet, puedes descargar manualmente la última versión de la herramienta desde el mosaico Upgrade Health Checker en el link:https://console.netapp.com/automationHub["Hub de Automatización de NetApp Console"].
 
 
 
