@@ -17,4 +17,6 @@ Upgrade Health Checker es una herramienta del servicio de asesoramiento de actua
 
 Upgrade Health Checker puede integrarse en tus marcos de automatización y orquestación existentes para ayudarte a actualizar uno o varios clústeres. Utiliza tus datos más recientes de AutoSupport para generar un informe detallado y preciso sobre los riesgos asociados con tus clústeres, información sobre las nuevas funciones y mejoras en la versión de ONTAP a la que estás actualizando y cualquier acción que debas tomar antes de intentar una actualización de ONTAP.
 
-Para saber más sobre Upgrade Health Checker, consulta la link:faq-upgrade-health-checker.html["FAQ para Upgrade Health Checker"].
+Para saber más sobre Upgrade Health Checker, puedes consultar la link:faq-upgrade-health-checker.html["FAQ para Upgrade Health Checker"] o ver el siguiente video de introducción.
+
+video::5mwmigXAB9c[youtube]

@@ -17,6 +17,9 @@ Puedes usar Upgrade Health Checker para generar un plan de actualización para u
 
 También puedes link:automate-report-upgrade-health-checker.html["automatiza la generación de informes de actualización"] para ayudarte a mantener actualizados los planes de actualización si tienes un entorno grande y complejo con varios clústeres.
 
+.Acerca de esta tarea
+Upgrade Health Checker admite actualizaciones para las versiones locales de ONTAP 9.11.1 y posteriores. Si usas Cloud Volumes ONTAP, consulta link:https://docs.netapp.com/us-en/storage-management-cloud-volumes-ontap/task-updating-ontap-cloud.html#supported-upgrade-paths["Actualiza Cloud Volumes ONTAP"] para información sobre cómo actualizar tu sistema.
+
 .Antes de empezar
 Para saber más sobre un parámetro específico de Upgrade Health Checker y el orden de prioridad en que la herramienta acepta la entrada, consulta link:upgrade-health-checker-input-parameters.html["Conoce los parámetros de entrada de Upgrade Health Checker"].
 

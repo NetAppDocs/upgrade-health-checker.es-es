@@ -26,7 +26,6 @@
   <block id="a17989ff5f0962c2877477c74338ae61" category="section-title">¿Se puede usar Upgrade Health Checker sin conexión a internet?</block>
   <block id="3880fea319e437eea669686be6861626" category="paragraph">No necesitas conexión a internet para ejecutar Upgrade Health Checker. Genera planes de actualización e informes en el sitio usando los datos de configuración actuales de tu clúster ONTAP.</block>
   <block id="982d129000c1d3e533f5e8593c670b3d" category="section-title">¿Qué versiones de ONTAP admite Upgrade Health Checker?</block>
-  <block id="4c8d49c7d71cf0e79e3740d7cf67dd62" category="paragraph">Upgrade Health Checker admite actualizaciones a ONTAP 9.11.1 y versiones posteriores.</block>
   <block id="b7c89596c79e950e74638e5d75919aee" category="summary">Puedes usar Upgrade Health Checker para generar un plan de actualización para uno o varios clusters ONTAP.</block>
   <block id="a46b239b0ed00e39f2903761716caf03" category="doc">Genera un plan de actualización con Upgrade Health Checker</block>
   <block id="e170a21083188ebc6e00ef17f5167dd7" category="inline-link-macro">automatiza la generación de informes de actualización</block>
@@ -57,7 +56,6 @@
   <block id="e75e96e756ff4d38a10cdee84526ca22" category="doc">Conoce Upgrade Health Checker</block>
   <block id="88e9e7bdabbf15e882c2c1d5c1356ba0" category="paragraph">Upgrade Health Checker es una herramienta del servicio de asesoramiento de actualizaciones que te da información detallada y recomendaciones para ayudarte a completar con éxito una actualización de ONTAP. Realiza comprobaciones de estado exhaustivas in situ que identifican bloqueos y advertencias que tienes que resolver antes de hacer una actualización.</block>
   <block id="aa3fb0007a6e493d6ff6af5e4cfd6ea9" category="paragraph">Upgrade Health Checker puede integrarse en tus marcos de automatización y orquestación existentes para ayudarte a actualizar uno o varios clústeres. Utiliza tus datos más recientes de AutoSupport para generar un informe detallado y preciso sobre los riesgos asociados con tus clústeres, información sobre las nuevas funciones y mejoras en la versión de ONTAP a la que estás actualizando y cualquier acción que debas tomar antes de intentar una actualización de ONTAP.</block>
-  <block id="e7a7f914c2fd76fa002667ce774516e8" category="paragraph">Para saber más sobre Upgrade Health Checker, consulta la <block ref="6a92c3eccbf08c1bc6caa0a6e92c02bb" category="inline-link-macro-rx"></block>.</block>
   <block id="30d965eef5ba25c6b9998ae38270b43e" category="doc">Avisos legales</block>
   <block id="e9c44bbfd795a5d63d74c6a77afee70d" category="paragraph">Los avisos legales proporcionan acceso a declaraciones de derechos de autor, marcas registradas, patentes y más.</block>
   <block id="6016a2b341113bf496b719905398ecd2" category="section-title">Copyright</block>
@@ -80,7 +78,6 @@
   <block id="ce2d4be7e0d93c8b156f834ce3704614" category="doc">Descarga y configura Upgrade Health Checker</block>
   <block id="55dcd8cbc9d164986479594db66fd89e" category="paragraph">Configura una máquina virtual para Upgrade Health Checker con las siguientes especificaciones:</block>
   <block id="cf0860ffd4dc1929d768f74d92735b75" category="list-text">Procesamiento y memoria: m5.large VM o equivalente con 2 vCPUs y 8 GiB RAM.</block>
-  <block id="c7ca991550b74c4fb5521603081f476c" category="list-text">Sistema operativo recomendado: Ubuntu 22.04 para compatibilidad óptima.</block>
   <block id="28a03eb4af7c5f6abf99620ada6c6cfb" category="list-text">Almacenamiento: proporciona un volumen raíz con un mínimo de 100 GB y un volumen NFS adicional de al menos 100 GB para asegurar la preservación de los datos si la máquina virtual se ve comprometida.</block>
   <block id="492b15c109a51daa9f89630b4f2bb303" category="list-text">Requisitos de alojamiento: coloca la máquina virtual en una ubicación con conectividad de clúster y acceso a internet para permitir las actualizaciones automáticas de la herramienta. La máquina debe tener acceso a los siguientes endpoints a través de HTTPS para realizar actualizaciones automáticas:</block>
   <block id="072b499eacb5befcbdab2d6cc0fe02a0" category="list-text"><block ref="072b499eacb5befcbdab2d6cc0fe02a0" category="inline-link-rx"></block></block>
@@ -101,7 +98,6 @@
   <block id="9f58de4245b2fb930c02c3766a7ff23f" category="list-text">Configura una cuenta de servicio y un rol para el acceso al clúster ONTAP. Para el acceso al clúster a través de Upgrade Health Checker, crea el rol de servicio como un rol REST.</block>
   <block id="15ec8997d97cf2ca0a22a65e524b2811" category="admonition">Puedes crear un playbook de Ansible para automatizar el despliegue del rol y el usuario en todos los clusters ONTAP.</block>
   <block id="d9e228dba301308afb2b46a1a951b363" category="paragraph">Debes crear la cuenta de servicio para la aplicación http. Usa los siguientes comandos de la CLI para configurar los permisos necesarios:</block>
-  <block id="c8bb94969a3153538fe3ed12d5ad5c4f" category="list-text">Configura la gestión de credenciales para asegurar el acceso a la aplicación.</block>
   <block id="034a1ea726a7fbf3e2fc72fde8ed680d" category="paragraph">Por ejemplo, si tienes CyberArk y Conjur, puedes configurar tu entorno para evitar pasar credenciales a través de un archivo yaml o línea de comandos.</block>
   <block id="f2f2f12c645a941c4c701a0ad14f78da" category="list-text">Crea las cajas fuertes necesarias de CyberArk:</block>
   <block id="6fecc57bc25e97c77bad1c6d06e7153d" category="list-text">Crea una Safe (Main-Conjur-Safe) que contenga las credenciales y secretos de la aplicación</block>
@@ -232,4 +228,14 @@
   <block id="d8f8bff1a4b83b3c4aa6b4284a2e39c2" category="section-title">13 febrero 2026</block>
   <block id="f245d5b92eabff0d1c1d1e41530987d0" category="list-text">Para garantizar la creación correcta de tus informes de actualización, completa todos los pasos de configuración necesarios y las tareas puntuales descritas en <block ref="6489edbb98d22789fa797cea6950f9bd" category="inline-link-macro-rx"></block>.</block>
   <block id="4a5a50ece5ac2f055b9ecb1ac0f449f2" category="paragraph">Sin embargo, se requiere acceso a internet para las actualizaciones automáticas de la herramienta. Si tu entorno no tiene conectividad a internet, puedes descargar manualmente la última versión de la herramienta desde el mosaico Upgrade Health Checker en el <block ref="886a64ecc1d4032be9eb5d1da893e684" category="inline-link-macro-rx"></block>.</block>
+  <block id="bbe48fb854ea022537208eeeff822f91" category="paragraph-title">Acerca de esta tarea</block>
+  <block id="3a3843b2672bd389702bef2d50b13ac2" category="inline-link-macro">Actualiza Cloud Volumes ONTAP</block>
+  <block id="fbea9b709f9869db351058e2990a8978" category="paragraph">Upgrade Health Checker admite actualizaciones para las versiones locales de ONTAP 9.11.1 y posteriores. Si usas Cloud Volumes ONTAP, consulta <block ref="28b2d523b3cffe11b9614de34794e1ab" category="inline-link-macro-rx"></block> para información sobre cómo actualizar tu sistema.</block>
+  <block id="d2c961c08b2b0c36adb33c10963a0eb6" category="paragraph">Upgrade Health Checker admite actualizaciones para ONTAP 9.11.1 on-premises y versiones posteriores.</block>
+  <block id="bef81ef7170eb4c509a54d4673a85016" category="paragraph">Para saber más sobre Upgrade Health Checker, puedes consultar la <block ref="6a92c3eccbf08c1bc6caa0a6e92c02bb" category="inline-link-macro-rx"></block> o ver el siguiente video de introducción.</block>
+  <block id="c2aacd91b1737e52a658e8a6f26cab08" category="list-text">Sistema operativo recomendado: cualquier sistema operativo Linux con la biblioteca glibc versión 2.28 o superior para una compatibilidad óptima. Esto incluye:</block>
+  <block id="e5051949dc3a37f9077e85df0f1c8a21" category="list-text">Ubuntu 22.04</block>
+  <block id="131e01e2ecbd7de2f9b3f16afa129bcd" category="list-text">RHEL8</block>
+  <block id="100147deec73dd6ee82e8d75ab8b4981" category="list-text">RHEL9</block>
+  <block id="3d814f055016b0a5f8d3fd580ea0225d" category="list-text">(Opcional) Configura la gestión de credenciales para asegurar el acceso a la aplicación.</block>
 </blocks>
