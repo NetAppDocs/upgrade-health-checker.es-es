@@ -58,13 +58,15 @@ Tarea cron:
 
 NOTE: Cada ejecución del programa es una ejecución única y tendrá todos los datos, registros y resultados asociados en la carpeta asociada `runs`.
 
-. Abre el archivo de informe (llamado `uhc_<cluster-name>_<YYYYMMDDHHMMSS>.html`) en un navegador web para ver el informe. Si estás ejecutando Upgrade Health Checker en un host remoto, primero descarga el archivo de informe en una máquina donde puedas verlo en un navegador web.
+. Abre el archivo de informe (llamado `uhc_<cluster-name>_<YYYYMMDDHHMMSS>`) en un navegador web, Microsoft Excel o un visor JSON para ver el informe. Si estás ejecutando Upgrade Health Checker en un host remoto, primero descarga el archivo de informe en una máquina donde puedas ver el informe en un navegador web, en Excel o en un visor JSON.
 +
 La ruta del registro y la ruta del informe son las siguientes:
 
 +
 ** Ruta de registro: `<output-path>/<unique-run-dir>/<cluster-name>/logs`
-** Ruta del informe: `<output-path>/<unique-run-dir>/<cluster-name>/results/uhc_<cluster-name>_<YYYYMMDDHHMMSS>.html`
+** Ruta del informe HTML: `<output-path>/<unique-run-dir>/<cluster-name>/results/uhc_<cluster-name>_<YYYYMMDDHHMMSS>.html`
+** Ruta del informe Excel: `<output-path>/<unique-run-dir>/<cluster-name>/results/uhc_<cluster-name>_<YYYYMMDDHHMMSS>.xlsx`
+** Ruta del informe JSON: `<output-path>/<unique-run-dir>/<cluster-name>/results/uhc_<cluster-name>_<YYYYMMDDHHMMSS>.json`
 
 
 
