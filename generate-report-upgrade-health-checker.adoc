@@ -45,8 +45,8 @@ La comprobación exhaustiva garantiza que la máquina virtual que aloja Upgrade 
 
 +
 ** Conectividad a la dirección IP del clúster ONTAP a través de HTTPS
-** Conectividad con el endpoint de telemetría (https://support.netapp.com/[] y https://api.activeiq.netapp.com[]) a través de HTTPS
-** Conectividad a los puntos finales de actualización automática (https://api.uhc.netapp.com[], https://gql.aiq.netapp.com[] y https://api.activeiq.netapp.com[]) a través de HTTPS (443)
+** Conectividad con el punto final de telemetría (+https://support.netapp.com/+ y +https://api.activeiq.netapp.com+) a través de HTTPS
+** Conectividad a los endpoints de actualización automática (+https://api.uhc.netapp.com+, +https://gql.aiq.netapp.com+ y +https://api.activeiq.netapp.com+) a través de HTTPS (443)
 ** Al menos 4 GB de espacio disponible `/tmp`
 
 

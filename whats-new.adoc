@@ -21,7 +21,7 @@ Conoce las novedades de Upgrade Health Checker. Puedes encontrar información ad
 
 Esta actualización de la documentación de Upgrade Health Checker incluye las siguientes funciones.
 
-* UHC necesita acceder a un nuevo punto final (https://api.activeiq.netapp.com[]) para que funcionen las funciones de actualización automática.
+* UHC necesita acceder a un nuevo punto final (+https://api.activeiq.netapp.com+) para que funcionen las funciones de actualización automática.
 +
 link:set-up-upgrade-health-checker.html["Descarga y configura Upgrade Health Checker"].
 
