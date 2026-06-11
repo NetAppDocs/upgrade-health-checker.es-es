@@ -1,0 +1,316 @@
+---
+sidebar: sidebar 
+permalink: troubleshoot-upgrade-health-checker.html 
+keywords: upgrade, health, checker, troubleshoot, issues, errors, ontap 
+summary: 'Solución de problemas de Upgrade Health Checker: problemas habituales, errores y soluciones para las actualizaciones de ONTAP.' 
+---
+= Soluciona problemas del verificador de estado de la actualización
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Descubre cómo solucionar los problemas habituales de Upgrade Health Checker y resolver los errores que pueden impedir la planificación de la actualización de ONTAP.
+
+
+
+== Soluciona problemas
+
+{empty} + {empty}
+
+
+
+=== Problema: errores de autenticación o de credenciales
+
+*Síntomas:*
+
+[listing]
+----
+Failed to fetch cluster details for <cluster-ip>
+Error connecting to ONTAP cluster: 401 Unauthorized
+Missing cluster credentials
+----
+Estos errores indican que Upgrade Health Checker no puede autenticarse en el clúster ONTAP con las credenciales proporcionadas. Esto puede deberse a un nombre de usuario o una contraseña incorrectos, permisos insuficientes para la cuenta de usuario o a que la cuenta esté bloqueada o desactivada.
+
+*Soluciones:*
+
+* Comprueba que el nombre de usuario y la contraseña sean correctos
+* Asegúrate de que el usuario tenga permisos suficientes para la API de REST de ONTAP
+* Comprueba si la cuenta está bloqueada o desactivada
+
+
+[listing]
+----
+./uhc --test-connectivity cluster
+----
+{empty} + {empty}
+
+
+
+=== Problema: la actualización automática falla
+
+*Síntomas:*
+
+[listing]
+----
+Auto-update failed: ...
+Failed to download update
+----
+Estos errores indican que Upgrade Health Checker no puede conectarse a internet para buscar o descargar actualizaciones. Esto puede deberse a problemas de conectividad de red, reglas de firewall que bloquean el acceso o configuraciones de proxy que no están correctamente configuradas.
+
+*Soluciones:*
+
+* Comprueba la conectividad a internet:
+
+
+[listing]
+----
+./uhc --test-connectivity autoupdate
+----
+* Comprueba el espacio en disco (se necesita 1 GB):
+
+
+[listing]
+----
+df -h <location of uhc>
+----
+{empty} {empty}
+
+
+
+=== Problema: el archivo binario tarda mucho en iniciarse
+
+*Motivo:* El archivo binario es autónomo y necesita descomprimirse antes de ejecutarse.
+
+*Comportamiento esperado:* La primera ejecución puede tardar unos segundos en cargarse. Esto es normal. {empty} + {empty} + {empty}
+
+
+
+=== Problema: «Permiso denegado» o «No se puede ejecutar el archivo binario» en /tmp
+
+*Síntomas:*
+
+[listing]
+----
+[Errno 13] Permission denied
+OSError: [Errno 13] Permission denied: '/tmp/_MEI...'
+Cannot execute binary file
+----
+Este error puede producirse cuando la herramienta no puede ejecutar los archivos en el directorio `/tmp`, que se utiliza para extraer y ejecutar los componentes de la herramienta. Esto puede deberse a permisos restrictivos en el directorio `/tmp` o a políticas de seguridad que impiden la ejecución desde esta ubicación.
+
+*Soluciones:*
+
+. Comprueba si `/tmp` tiene `noexec` habilitado:
+
+
+[listing]
+----
+mount | grep /tmp
+# If you see noexec in the output, this is the issue.
+----
+. [[step2]] Vuelve a montar `/tmp` con `exec` (se requieren permisos de administrador del sistema):
+
+
+[listing]
+----
+# Temporary fix
+sudo mount -o remount,exec /tmp
+# Permanent fix - edit /etc/fstab
+# Change "noexec" to "exec" for /tmp mount point
+----
+. [[step3]] Si no es posible realizar el paso anterior debido a restricciones, puedes configurar la herramienta para que use un directorio temporal alternativo con los permisos adecuados:
+
+
+[listing]
+----
+mkdir -p /custom-tmp-path
+# This only needs to be done one time.
+TMPDIR=/custom-tmp-path ./uhc
+# The TMPDIR prefix has to be added every time.
+----
+
+NOTE: Para que esta solución alternativa funcione, la ruta personalizada debe existir previamente. Si aún no existe, no se crea y se recurre a utilizar `/tmp`.
+
+. [[step4]] Después de ajustar los permisos o cambiar el directorio temporal, prueba a ejecutar la herramienta de nuevo para ver si el problema se ha resuelto. +
+
+
+
+
+=== Problema: tiempo de espera de conexión
+
+*Síntomas:*
+
+[listing]
+----
+Connection timeout
+Request timeout
+----
+*Soluciones:*
+
+* Comprueba la conectividad de red con el clúster
+* Comprueba que ningún cortafuegos esté bloqueando el tráfico HTTPS (443)
+* Comprueba que el clúster responde y que no está bajo una carga elevada +
+
+
+
+
+=== Problema: espacio insuficiente en disco
+
+*Síntomas:*
+
+[listing]
+----
+Not enough disk space available
+OSError: [Errno 28] No space left on device
+----
+*Soluciones:*
+
+* Comprueba el espacio en disco:
+
+
+[listing]
+----
+df -h /tmp
+df -h .
+----
+* Limpiar ejecuciones antiguas:
+
+
+[listing]
+----
+# Remove old run directories
+rm -rf runs/<old_run_directories>
+----
+* Borrar archivos temporales:
+
+
+[listing]
+----
+# Remove temporary files
+rm -rf /tmp/_MEI*
+----
+{empty} + {empty}
+
+
+
+=== Problema: ruta de ejecución no válida
+
+*Síntomas:*
+
+[listing]
+----
+Invalid basepath_runs: <error>
+RUNS path is not set
+Cannot create tarball: basepath_runs '<path>' does not exist
+----
+*Soluciones:*
+
+* Asegúrate de que el directorio de salida de las ejecuciones existe y es escribible
+* Especifica una ruta válida a través de la CLI: `--runs-path /valid/path`
+* Configura en config.yaml: `APP.RUNS_PATH: "/valid/path"` +
+
+
+
+
+=== Problema: versión de ONTAP no válida
+
+*Síntomas:*
+
+[listing]
+----
+Invalid ONTAP version: '<version>' does not exist
+Invalid ONTAP version: '<version>' is not a recognized ONTAP version
+Downgrade is not supported. Target version must be greater than or equal to the current version.
+----
+*Soluciones:*
+
+* Comprueba el formato de la cadena de la versión de destino (por ejemplo, "9.16.1")
+* Asegúrate de que la versión de destino sea igual o posterior a la versión actual del clúster
+* Utiliza «current» para mantener la versión actual de ONTAP: `--target-ontap-version=current` +
+
+
+
+
+=== Problema: error en la verificación de la firma
+
+*Síntomas:*
+
+[listing]
+----
+Signature verification failed
+Invalid code signature
+----
+*Causa:* Es posible que el archivo de actualización descargado esté dañado o haya sido alterado.
+
+*Solución:*
+
+* Actualización manual: descarga desde el sitio de soporte de NetApp
+* Verifica la firma manualmente:
++
+[listing]
+----
+openssl dgst -sha256 -verify UHC-Linux-public.pub -signature uhc.sig uhc
+----
++
+{empty} + {empty}
+
+
+
+
+
+=== Problema: error en la carga de datos de telemetría
+
+*Síntomas:*
+
+[listing]
+----
+body.7z upload failed
+Telemetry endpoint is not reachable
+----
+*Soluciones:*
+
+* Comprueba la conectividad con el punto final de telemetría:
+
+
+[listing]
+----
+./uhc --test-connectivity telemetry
+----
+{empty} + {empty}
+
+
+
+=== Problema: archivo de bloqueo "UPDATE IN PROGRESS"
+
+*Síntomas:*
+
+[]
+====
+ACTUALIZACIÓN EN CURSO
+
+Actualmente se está ejecutando otra instancia de actualización automática de UHC. Espera a que finalice la actualización antes de volver a ejecutarla.
+
+====
+*Causa:* Existe un archivo de bloqueo de un proceso de actualización anterior.
+
+*Soluciones:*
+
+. *Espera:* La actualización suele tardar entre 1 y 2 minutos en completarse.
+. *Comprobar si está obsoleto:* (limpieza automática tras 1 hora):
+
+
+[listing]
+----
+ls -la uhc_update.lock
+# If older than 1 hour, it will be auto-cleaned
+----
+. [[step3]] *Limpieza manual, si es necesario:*
+
+
+[listing]
+----
+rm uhc_update.lock
+----

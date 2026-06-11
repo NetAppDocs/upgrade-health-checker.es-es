@@ -13,6 +13,8 @@ indexpage:
       url: learn-about-upgrade-health-checker.html
     - title: Configura Upgrade Health Checker
       url: set-up-upgrade-health-checker.html
+    - title: Conoce los parámetros de entrada de Upgrade Health Checker
+      url: upgrade-health-checker-input-parameters.html
   - title: Usa Upgrade Health Checker
     links:
     - title: Genera un informe de actualización de ONTAP
@@ -21,9 +23,11 @@ indexpage:
       url: automate-report-upgrade-health-checker.html
   - title: Más recursos
     links:
-    - title: Conoce los parámetros de entrada de Upgrade Health Checker
-      url: upgrade-health-checker-input-parameters.html
     - title: Primeros pasos con Upgrade Health Checker usando NetApp Lab on Demand
       url: https://community.netapp.com/t5/Tech-ONTAP-Blogs/Getting-Started-with-Upgrade-Health-Checker-Using-NetApp-Lab-on-Demand/ba-p/466818
+    - title: Mantén el verificador de estado de actualizaciones
+      url: maintain-upgrade-health-checker.html
+    - title: Soluciona problemas del verificador de estado de la actualización
+      url: troubleshoot-upgrade-health-checker.html
     - title: FAQ para Upgrade Health Checker
       url: faq-upgrade-health-checker.html

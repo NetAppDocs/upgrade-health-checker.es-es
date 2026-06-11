@@ -1,0 +1,51 @@
+---
+sidebar: sidebar 
+permalink: dashboard-upgrade-health-checker.html 
+keywords: upgrade, health, checker, dashboard, for upgrade health checker 
+summary: Panel de control para Upgrade Health Checker. 
+---
+= Actualizar el panel de control de Health Checker
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Al finalizar cada ejecución de Upgrade Health Checker, se genera un panel de control HTML estático en `runs/dashboard/index.html` al final de cada ejecución. El panel de control ofrece una visión a grandes rasgos del estado de salud de los clústeres evaluados recientemente, lo que te permite supervisar y comparar el grado de preparación para la actualización entre los distintos clústeres.
+
+Para regenerar el panel de control más tarde (sin conectarse a un clúster), ejecuta:
+
+[listing]
+----
+./uhc --dashboard
+./uhc --dashboard --runs-path /custom/output
+./uhc --dashboard --config-path /path/to/custom_config.yaml
+----
+A continuación se muestra una vista de un panel de control de Upgrade Health Checker generado recientemente. image:../media/dashboard3.gif[""]
+
+En la parte superior de la página hay cinco fichas de resumen identificadas por colores (cada una es también un filtro seleccionable) que muestran:
+
+* *Listos para la actualización:* Número de clústeres en los que la última comprobación de estado no ha detectado ningún impedimento, es decir, que están listos para la actualización.
+* *Bloqueados:* Número de clústeres bloqueados que no pueden actualizarse hasta que se resuelvan los bloqueadores.
+* *Errores:* Número de clústeres cuya última ejecución de UHC no se completó (por ejemplo, por fallo de conexión, autenticación o recopilación de datos).
+* *Obsoletos (>7):* Número de clústeres cuya última ejecución de UHC se realizó hace más de 7 días (los datos de comprobación de estado están obsoletos).
+* *Total de la flota:* Número total de clústeres en la flota (los que tienen una ejecución en la ventana del panel, por defecto son los últimos 30 días).
+
+
+La sección «Resumen de la flota» detalla el estado actual de la flota. Para cada clúster, se proporciona la siguiente información (la tabla muestra la última ejecución por clúster):
+
+* *Nombre del clúster:* Nombre del clúster (con su IP de gestión indicada debajo del nombre).
+* *Estado:* Estado actual del clúster: Listo, Bloqueado, Error o Obsoleto.
+* *Obstáculos:* Número de obstáculos en el clúster. Estos son problemas críticos que deben resolverse antes de actualizar.
+* *En riesgo:* Número de hallazgos en riesgo en el clúster. Estos son riesgos identificados durante la comprobación previa a la actualización.
+* *Advertencias:* Número de advertencias en el clúster. La comprobación previa a la actualización se completó con algunas advertencias; puedes elegir corregir estas advertencias o continuar con la actualización.
+* *Omitidas:* Número de comprobaciones que se han omitido en el clúster.
+* *Versión de destino:* La versión de ONTAP a la que el usuario tiene previsto actualizar. (Puede ser la misma que la versión actual si solo quieres hacer una comprobación del estado de la versión en ejecución.)
+* *Nodos:* Los nodos del clúster, cada uno se muestra como nombre de nodo con su modelo de hardware (por ejemplo, eurbkpcla (FAS8200)).
+* *Informes:* Formatos de informe disponibles para la ejecución: HTML, JSON, Excel, Log.
+* *Última ejecución:* Fecha y hora de la última ejecución de Upgrade Health Checker (con la indicación relativa «hace X días»).
+
+
+Puedes seleccionar *Actualizar* para refrescar la página. Utiliza la barra de *búsqueda* para buscar información sobre un clúster concreto.

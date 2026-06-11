@@ -95,6 +95,10 @@ La Guía de parámetros de entrada también proporciona información para especi
 
 NOTE: Cada ejecución del programa es una "ejecución única" y tendrá todos los datos, registros y resultados asociados en la carpeta asociada `runs`.
 
+. Enumera los archivos de informe generados:
++
+`ls -lrt`
+
 . Abre el archivo de informe (llamado `uhc_<cluster-name>_<YYYYMMDDHHMMSS>`) en un navegador web, Microsoft Excel o un visor JSON para ver el informe. Si lo estás ejecutando en un host remoto, primero descarga el archivo de informe a una máquina donde puedas ver el informe en un navegador web, en Excel o en un visor JSON.
 +
 La ruta del registro y la ruta del informe son las siguientes:
@@ -107,3 +111,6 @@ La ruta del registro y la ruta del informe son las siguientes:
 
 
 
+
+.Qué sigue
+Después de que hayas generado tu plan de actualización y el informe de clústeres, puedes ver el link:dashboard-upgrade-health-checker.html["Actualizar el panel de control de Health Checker"] para ver detalles sobre el estado de salud de los clústeres evaluados durante la ejecución.
