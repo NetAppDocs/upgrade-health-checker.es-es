@@ -13,11 +13,14 @@ summary: Puedes configurar correos electrónicos para recibir los informes de Up
 
 
 [role="lead"]
-Puedes integrar correos electrónicos en Upgrade Health Checker para recibir informes en tu bandeja de entrada. Habilitas esta función a través del archivo config.yaml o un argumento de línea de comandos. Cuando está habilitada, Upgrade Health Checker envía los informes generados (HTML, Excel o JSON) a uno o más destinatarios configurados usando un servidor SMTP. Cuando la función está deshabilitada, no se envían informes. Si falla la generación de informes y el correo electrónico está habilitado, los archivos de registro se envían a los destinatarios configurados.
+Upgrade Health Checker puede enviar informes directamente a tu bandeja de entrada. Activa esta función a través del archivo config.yaml o mediante un argumento de línea de comandos. Cuando está habilitado, Upgrade Health Checker envía los informes generados (HTML, Excel o JSON) a uno o varios destinatarios a través de un servidor SMTP. Cuando está deshabilitado, no se envía ningún informe. Si falla la generación de informes y el envío por correo electrónico está habilitado, Upgrade Health Checker envía los archivos de registro por correo electrónico a los destinatarios configurados.
 
 
 
+[[configure-using-the-config-yaml-file]]
 == Configurar mediante el archivo config.yaml
+
+Puedes configurar los ajustes de correo electrónico en el archivo config.yaml activando los informes por correo electrónico, añadiendo los datos del servidor SMTP y especificando las direcciones de los destinatarios y los formatos de los informes.
 
 . Activa los informes por correo electrónico en el archivo config.yaml.
 +
@@ -27,7 +30,7 @@ Puedes integrar correos electrónicos en Upgrade Health Checker para recibir inf
 EMAIL:
   ENABLED: true
 ----
-. Indica la configuración SMTP junto con los datos del remitente y el asunto:
+. Agrega la configuración de SMTP, los detalles del remitente y el asunto:
 +
 [listing]
 ----
@@ -41,7 +44,7 @@ EMAIL:
     HOST: "smtp.example.com"
     PORT: [<port-number>]
 ----
-. Introduce las direcciones de correo electrónico de los destinatarios y configura qué formatos de informe se envían por correo electrónico, por ejemplo, HTML, EXCEL, JSON, ALL:
+. Añade las direcciones de correo electrónico de los destinatarios y configura los formatos de informe que el sistema envía por correo electrónico, por ejemplo, HTML, EXCEL, JSON o ALL. También puedes usar autenticación y cifrado:
 +
 [listing]
 ----
@@ -57,12 +60,20 @@ EMAIL:
   SMTP:
     HOST: "smtp.example.com"
     PORT: [PORT]
+    USE_SMTP_AUTH: true
+    USE_TLS: true
+    USE_SSL: true
+    USERNAME: "user@example.com"
+    PASSWORD: "********"
 ----
 
 
 
 
+[[configure-using-command-line-arguments]]
 == Configurar mediante argumentos de línea de comandos
+
+Puedes configurar los ajustes básicos del correo electrónico mediante argumentos de línea de comandos para habilitar los informes, especificar los destinatarios y seleccionar los formatos de los informes.
 
 . Activar los informes por correo electrónico mediante argumentos de línea de comandos:
 +
@@ -86,14 +97,14 @@ EMAIL:
 
 [NOTE]
 ====
-Los tres atributos siguientes se pueden configurar tanto mediante argumentos de línea de comandos como a través del archivo config.yaml; el resto de atributos solo se pueden configurar en el archivo config.yaml:
+Puedes configurar los tres atributos siguientes mediante argumentos de línea de comandos o el archivo config.yaml. Puedes configurar todos los atributos restantes solo en el archivo config.yaml:
 
 * Correo electrónico habilitado
 * Destinatarios del correo electrónico
 * Formatos de los informes por correo electrónico
 
 
-Ten en cuenta que, cuando se proporcionan argumentos de línea de comandos, estos prevalecen sobre los valores del archivo config.yaml.
+Ten en cuenta que los argumentos de la línea de comandos tienen prioridad sobre los valores del archivo config.yaml.
 
 Por ejemplo:
 

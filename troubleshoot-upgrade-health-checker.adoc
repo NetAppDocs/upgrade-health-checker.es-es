@@ -17,12 +17,14 @@ Descubre cómo solucionar los problemas habituales de Upgrade Health Checker y r
 
 
 
+[[troubleshoot-issues]]
 == Soluciona problemas
 
 {empty} + {empty}
 
 
 
+[[issue-authentication-or-credential-errors]]
 === Problema: errores de autenticación o de credenciales
 
 *Síntomas:*
@@ -50,6 +52,7 @@ Estos errores indican que Upgrade Health Checker no puede autenticarse en el cl�
 
 
 
+[[issue-auto-update-fails]]
 === Problema: la actualización automática falla
 
 *Síntomas:*
@@ -81,6 +84,7 @@ df -h <location of uhc>
 
 
 
+[[issue-binary-takes-a-long-time-to-start]]
 === Problema: el archivo binario tarda mucho en iniciarse
 
 *Motivo:* El archivo binario es autónomo y necesita descomprimirse antes de ejecutarse.
@@ -89,6 +93,7 @@ df -h <location of uhc>
 
 
 
+[[issue-permission-denied-or-cannot-execute-binary-on-tmp]]
 === Problema: «Permiso denegado» o «No se puede ejecutar el archivo binario» en /tmp
 
 *Síntomas:*
@@ -139,6 +144,7 @@ NOTE: Para que esta solución alternativa funcione, la ruta personalizada debe e
 
 
 
+[[issue-connection-timeout]]
 === Problema: tiempo de espera de conexión
 
 *Síntomas:*
@@ -157,6 +163,7 @@ Request timeout
 
 
 
+[[issue-insufficient-disk-space]]
 === Problema: espacio insuficiente en disco
 
 *Síntomas:*
@@ -196,6 +203,7 @@ rm -rf /tmp/_MEI*
 
 
 
+[[issue-invalid-runs-path]]
 === Problema: ruta de ejecución no válida
 
 *Síntomas:*
@@ -215,6 +223,7 @@ Cannot create tarball: basepath_runs '<path>' does not exist
 
 
 
+[[issue-invalid-target-ontap-version]]
 === Problema: versión de ONTAP no válida
 
 *Síntomas:*
@@ -234,6 +243,7 @@ Downgrade is not supported. Target version must be greater than or equal to the 
 
 
 
+[[issue-signature-verification-fails]]
 === Problema: error en la verificación de la firma
 
 *Síntomas:*
@@ -261,6 +271,7 @@ openssl dgst -sha256 -verify UHC-Linux-public.pub -signature uhc.sig uhc
 
 
 
+[[issue-telemetry-upload-failure]]
 === Problema: error en la carga de datos de telemetría
 
 *Síntomas:*
@@ -283,6 +294,7 @@ Telemetry endpoint is not reachable
 
 
 
+[[issue-update-in-progress-lock-file]]
 === Problema: archivo de bloqueo "UPDATE IN PROGRESS"
 
 *Síntomas:*

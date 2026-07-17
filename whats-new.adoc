@@ -1,5 +1,5 @@
 ---
-sidebar: sidebarU 
+sidebar: sidebar 
 permalink: whats-new.html 
 keywords: upgrade, health, checker, whats new, release, notes 
 summary: Descubre qué hay de nuevo en este sitio doc. 
@@ -17,9 +17,24 @@ Descubre las novedades de Upgrade Health Checker (UHC). Puedes encontrar informa
 
 
 
+[[17-july-2026]]
+== 17 de julio de 2026
+
+Esta actualización añade varias mejoras, entre las que se incluyen un panel de control con vista general de los riesgos de la flota, compatibilidad con la autenticación y el cifrado del correo electrónico, informes sobre el recuento de unidades de disco, compatibilidad con la versión recomendada de ONTAP y comprobaciones IMT para NAS y SAN.
+
+* Panel de control de UHC: ya está disponible la vista *Fleet Risk*
+* Integración con el correo electrónico: compatibilidad con un servidor de correo electrónico con autenticación y cifrado
+* Se añadió *Número de unidades* en el resumen del clúster en el informe
+* Versión recomendada de ONTAP ahora compatible
+* Se añadió compatibilidad con las comprobaciones IMT de NAS y SAN
+
+
+
+
+[[11-june-2026]]
 == 11 de junio de 2026
 
-Esta actualización de la documentación de Upgrade Health Checker incluye las siguientes funciones.
+Esta actualización añade el envío de informes por correo electrónico, un parámetro del panel de control para obtener resúmenes rápidos del estado del sistema y nuevas secciones de documentación que te ayudarán a mantener y solucionar problemas de Upgrade Health Checker.
 
 * UHC permite recibir los informes directamente en tu bandeja de entrada.
 +
@@ -31,7 +46,7 @@ link:dashboard-upgrade-health-checker.html["Actualizar el panel de control de He
 
 * Se introduce una nueva sección de mantenimiento, solución de problemas y preguntas frecuentes.
 +
-** Mantén Upgrade Health Checker comprobando periódicamente si hay actualizaciones, supervisando los registros en busca de problemas recurrentes y asegurándote de que la herramienta esté configurada correctamente para tu entorno.
+** Realiza el mantenimiento de Upgrade Health Checker comprobando si hay actualizaciones, supervisando los registros en busca de problemas recurrentes y verificando que configuras la herramienta correctamente.
 +
 link:maintain-upgrade-health-checker.html["Mantén el verificador de estado de actualizaciones"].
 
@@ -49,11 +64,12 @@ link:faq-upgrade-health-checker.html["FAQ para Upgrade Health Checker"].
 
 
 
+[[15-april-2026]]
 == 15 abril 2026
 
-Esta actualización de la documentación de Upgrade Health Checker incluye las siguientes funciones.
+Esta actualización añade un nuevo formato de informe XLSX y requiere acceso a un nuevo endpoint para que funcionen las actualizaciones automáticas.
 
-* UHC necesita acceder a un nuevo punto final (+https://api.activeiq.netapp.com+) para que funcionen las funciones de actualización automática.
+* Debes conceder a UHC acceso a un nuevo endpoint (+https://api.activeiq.netapp.com+) para que funcionen las funciones de actualización automática.
 +
 link:set-up-upgrade-health-checker.html["Descarga y configura Upgrade Health Checker"].
 
@@ -68,8 +84,9 @@ link:automate-report-upgrade-health-checker.html["Automatiza la generación de p
 
 
 
+[[13-february-2026]]
 == 13 febrero 2026
 
-Upgrade Health Checker ofrece una nueva solución para generar informes completos in situ que te permiten completar una actualización de ONTAP con éxito. Se puede usar con los marcos de automatización y orquestación existentes para mejorar la eficiencia al actualizar uno o varios clústeres. Upgrade Health Checker admite actualizaciones a ONTAP 9.11.1 y versiones posteriores.
+Ya está disponible Upgrade Health Checker. Esta herramienta genera informes detallados in situ para ayudarte a completar con éxito una actualización de ONTAP. Puedes usar Upgrade Health Checker con los marcos de automatización y orquestación existentes para ahorrar tiempo al actualizar uno o varios clústeres. Upgrade Health Checker admite actualizaciones a ONTAP 9.11.1 y versiones posteriores.
 
 link:learn-about-upgrade-health-checker.html["Conoce más sobre Upgrade Health Checker"].
