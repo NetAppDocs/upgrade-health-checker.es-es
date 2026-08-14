@@ -17,6 +17,13 @@ Descubre las novedades de Upgrade Health Checker (UHC). Puedes encontrar informa
 
 
 
+[[13-august-2026]]
+== 13 de agosto de 2026
+
+Esta actualización mejora las comprobaciones de interoperabilidad para los clústeres SAN y NAS ONTAP y corrige algunos problemas existentes.
+
+
+
 [[17-july-2026]]
 == 17 de julio de 2026
 
